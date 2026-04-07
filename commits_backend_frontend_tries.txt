@@ -1,0 +1,106 @@
+Initialiser le projet
+Structurer la base du projet
+Rédiger le README principal
+Définir le fichier .gitignore
+Paramétrer les variables d'environnement
+Mettre en place Docker
+Mettre en place docker-compose
+Préparer le script de lancement Docker
+Préparer le script d'arrêt Docker
+Organiser le dossier backend
+Paramétrer PostgreSQL
+Mettre en place la base Laravel
+Définir les routes API
+Créer le contrôleur utilisateur
+Créer le modèle utilisateur
+Générer la migration utilisateurs
+Implémenter l'authentification Sanctum
+Intégrer le middleware API
+Corriger les routes
+Mettre en place le service API
+Corriger l'appel API utilisateur
+Gérer les erreurs backend
+Mettre en place la validation des formulaires
+Générer la migration categories
+Créer le modèle categorie
+Créer le contrôleur categorie
+Définir les routes categories
+Générer la migration groupes
+Créer le modèle groupe
+Créer le contrôleur groupe
+Définir les routes groupes
+Générer la migration joueurs
+Créer le modèle joueur
+Créer le contrôleur joueur
+Définir les routes joueurs
+Générer la migration seances
+Créer le modèle seance
+Créer le contrôleur seance
+Définir les routes seances
+Générer la migration presences
+Créer le modèle presence
+Créer le contrôleur presence
+Définir les routes presences
+Mettre en place les seeders de base
+Corriger les relations entre modèles
+Implémenter la pagination API
+Implémenter la recherche simple
+Renforcer les validations backend
+Intégrer les notifications académie
+Créer le modèle paiement
+Exposer les endpoints paiements
+Activer la protection Sanctum
+Écrire les tests unitaires de base
+Écrire les tests feature API
+Corriger les erreurs de tests
+Refactoriser les services API
+Optimiser les requêtes base de données
+Mettre en place les logs applicatifs
+Mettre en place la gestion des exceptions
+Améliorer les messages d'erreur
+Nettoyer le code backend
+Vérifier les migrations backend
+Finaliser la structure API REST
+Organiser le dossier frontend
+Initialiser l'application Vue frontend
+Paramétrer Vite
+Affiner la configuration Vite frontend
+Intégrer Vue au frontend
+Structurer le dossier src
+Créer le fichier App.vue
+Créer le fichier main.js
+Définir le style global
+Structurer le dossier composants
+Concevoir le composant navbar
+Concevoir le composant footer
+Concevoir le composant bouton
+Créer la vue accueil
+Mettre en place la page d'accueil
+Créer la vue connexion
+Mettre en place la page connexion
+Créer le formulaire de connexion
+Mettre en place la page inscription
+Mettre en place la page tableau de bord
+Créer la vue tableau de bord
+Paramétrer le routeur Vue
+Définir les routes frontend
+Mettre en place le layout principal
+Mettre en place la validation des champs
+Mettre en place le service API frontend
+Configurer axios
+Corriger l'appel API utilisateur
+Gérer les erreurs API frontend
+Mettre en place l'état global utilisateur
+Mettre en place la persistance de session
+Mettre en place la garde de route auth
+Corriger la redirection après login
+Afficher la liste des joueurs
+Afficher la liste des groupes
+Afficher la liste des séances
+Optimiser le chargement des pages
+Corriger le bug connexion
+Corriger le bug inscription
+Corriger le bug pagination
+Nettoyer le code frontend
+Vérifier le build frontend
+Finaliser le frontend pour livraison
