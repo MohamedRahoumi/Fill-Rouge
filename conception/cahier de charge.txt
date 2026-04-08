@@ -1,0 +1,123 @@
+CAHIER DES CHARGES - VERSION ACADEMIQUE POUR SOUTENANCE PFE
+Projet: Plateforme de gestion d'academie sportive (MiniFoot Academy)
+
+1. Introduction generale
+1.1. Contexte
+La transformation digitale des structures sportives est devenue une necessite pour ameliorer la qualite du suivi des joueurs, optimiser l'organisation interne et fiabiliser la gestion administrative et financiere. Dans ce cadre, ce projet propose la conception et la realisation d'une plateforme web integree pour une academie sportive.
+
+1.2. Problematique
+La gestion manuelle ou partiellement digitalisee d'une academie engendre souvent:
+- des pertes d'information,
+- un suivi sportif incomplet,
+- des difficultes de communication entre acteurs,
+- une gestion des paiements peu fiable.
+
+La problematique centrale est donc la suivante:
+Comment concevoir une solution web centralisee, securisee et evolutive permettant de synchroniser les besoins administratifs, sportifs et financiers d'une academie sportive?
+
+1.3. Finalite du projet
+Developper un systeme d'information metier qui centralise l'ensemble des operations de l'academie autour de trois profils d'utilisateurs: super administrateur, coach et parent.
+
+2. Objectifs
+2.1. Objectif general
+Concevoir et deployer une plateforme web de gestion academique sportive garantissant efficacite operationnelle, traçabilite des actions et qualite du suivi des joueurs.
+
+2.2. Objectifs specifiques
+- Mettre en place une gestion centralisee des utilisateurs et des droits d'acces.
+- Structurer l'organisation sportive (categories, groupes, seances).
+- Assurer le suivi des presences et des evaluations des joueurs.
+- Integrer un module de paiement en ligne securise via Stripe.
+- Faciliter la communication institutionnelle par notifications.
+
+3. Perimetre du projet
+3.1. Perimetre fonctionnel inclus
+- Authentification et gestion des roles.
+- Gestion des coachs, parents, joueurs, categories et groupes.
+- Planification des seances d'entrainement.
+- Appel (presence/absence + motif d'absence).
+- Evaluation pedagogique des joueurs.
+- Paiement en ligne et suivi des statuts de transaction.
+- Notifications internes ciblees.
+
+3.2. Hors perimetre
+- Inscription publique autonome des utilisateurs.
+- Application mobile native.
+- Modules avances de business intelligence.
+
+4. Etude des acteurs
+4.1. Super Administrateur
+- Cree et gere les comptes coachs et parents.
+- Gere les categories, groupes et joueurs.
+- Assigne coachs et joueurs.
+- Supervise les paiements.
+- Diffuse des notifications.
+
+4.2. Coach
+- Consulte et gere ses groupes assignes.
+- Planifie les seances.
+- Enregistre les presences.
+- Produit les evaluations des joueurs.
+
+4.3. Parent
+- Consulte le suivi sportif de ses enfants.
+- Consulte le planning.
+- Realise et suit les paiements en ligne.
+
+5. Analyse des besoins
+5.1. Besoins fonctionnels
+- Le systeme doit authentifier les utilisateurs et appliquer les droits selon le role.
+- Le systeme doit permettre la gestion complete des entites metier.
+- Le systeme doit garantir la coherence des affectations (joueur-categorie-groupe).
+- Le systeme doit tracer les presences et evaluations.
+- Le systeme doit integrer un paiement en ligne fiable.
+- Le systeme doit notifier les utilisateurs selon des cibles definies.
+
+5.2. Besoins non fonctionnels
+- Securite: controle d'acces, validation des donnees, protection des sessions.
+- Performance: reponses fluides et pagination des listes.
+- Maintenabilite: separation claire frontend/backend et code modulaire.
+- Portabilite: execution locale via Docker Compose.
+- Evolutivite: architecture permettant des extensions futures.
+
+6. Regles de gestion
+- Un utilisateur possede un role unique (superadmin, coach, parent).
+- Un joueur est rattache a un seul parent.
+- Un joueur appartient a une categorie et a un seul groupe a la fois.
+- Un groupe appartient a une categorie et peut etre gere par un coach.
+- Une seance est liee a un groupe.
+- Les presences sont enregistrees par seance et par joueur.
+- Les paiements reussis Stripe sont valides automatiquement.
+- Seuls les paiements en attente peuvent faire l'objet d'une validation administrative.
+
+7. Choix techniques et architecture
+7.1. Architecture logique
+- Frontend: interface utilisateur web.
+- Backend: API metier et securite.
+- Base de donnees: persistance relationnelle.
+- Service externe: Stripe pour les paiements.
+
+7.2. Technologies retenues
+- Backend: Laravel 13, PHP 8.3, Sanctum.
+- Frontend: Vue 3, Vite, Pinia, Vue Router, Axios.
+- Base de donnees: PostgreSQL.
+- Conteneurisation: Docker Compose.
+
+
+8. Livrables du PFE
+- Application backend (API Laravel).
+- Application frontend (Vue).
+- Scripts d'execution locale (Docker Compose).
+- Base de donnees structuree via migrations.
+- Diagrammes UML (cas d'utilisation, classes).
+
+
+9. Criteres d'acceptation
+Le projet est considere valide si:
+- chaque acteur accede exclusivement a ses fonctionnalites,
+- les workflows metier critiques fonctionnent sans erreur,
+- le paiement en ligne est operationnel avec retour de statut coherent,
+- les donnees sont persistantes et coherentes,
+- la solution est demonstrable en environnement local.
+
+10. Conclusion
+Ce cahier des charges formalise une solution complete de digitalisation de l'activite d'une academie sportive. Le projet repond a une problematique reelle d'organisation, de suivi et de fiabilite. Il constitue un sujet pertinent de PFE par sa dimension metier, technique, securitaire et evolutive.
