@@ -160,14 +160,14 @@ const handleDelete = async (id) => {
       :subtitle="activeTab === 'coachs' ? 'Espace Administration / Coachs' : 'Espace Administration / Parents'"
     >
       <form @submit.prevent="handleSubmit" class="space-y-4">
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <BaseInput v-model="form.prenom" label="Prénom" placeholder="Jean" required />
           <BaseInput v-model="form.nom" label="Nom" placeholder="Dupont" required />
         </div>
         <BaseInput v-model="form.email" label="Adresse email" type="email" placeholder="email@exemple.com" required />
         
         <template v-if="!isEditing">
-          <div class="grid grid-cols-2 gap-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <BaseInput v-model="form.password" label="Mot de passe" type="password" required />
             <BaseInput v-model="form.password_confirmation" label="Confirmation" type="password" required />
           </div>

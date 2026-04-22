@@ -30,19 +30,19 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydown));
 <template>
   <Teleport to="body">
     <Transition name="modal-fade">
-      <div v-if="show" class="fixed inset-0 z-[200] flex items-center justify-center p-4">
+      <div v-if="show" class="fixed inset-0 z-[200] flex items-center justify-center p-3 sm:p-4">
         <!-- Backdrop -->
         <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-[2px]" @click="close"></div>
         
         <!-- Modal Content -->
         <div 
-          class="relative bg-white w-full rounded-[32px] shadow-2xl overflow-hidden animate-modal-in"
+          class="relative bg-white w-full rounded-[24px] sm:rounded-[32px] shadow-2xl overflow-hidden animate-modal-in max-h-[90vh] overflow-y-auto"
           :class="width"
         >
           <!-- Header -->
-          <div class="px-8 py-6 border-b border-slate-100 flex items-center justify-between bg-white">
+          <div class="px-5 py-4 sm:px-8 sm:py-6 border-b border-slate-100 flex items-center justify-between bg-white gap-3">
             <div>
-              <h3 class="text-xl font-bold text-slate-900">{{ title }}</h3>
+              <h3 class="text-lg sm:text-xl font-bold text-slate-900">{{ title }}</h3>
               <p v-if="subtitle" class="text-sm text-slate-500 mt-0.5">{{ subtitle }}</p>
             </div>
             <button @click="close" class="w-10 h-10 rounded-full hover:bg-slate-50 flex items-center justify-center text-slate-400 transition-colors">
@@ -51,12 +51,12 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydown));
           </div>
           
           <!-- Body -->
-          <div class="px-8 py-6">
+          <div class="px-5 py-4 sm:px-8 sm:py-6">
             <slot></slot>
           </div>
           
           <!-- Footer -->
-          <div v-if="$slots.footer" class="px-8 py-6 bg-slate-50/50 border-t border-slate-100 flex items-center justify-end gap-3">
+          <div v-if="$slots.footer" class="px-5 py-4 sm:px-8 sm:py-6 bg-slate-50/50 border-t border-slate-100 flex items-center justify-end gap-3">
             <slot name="footer"></slot>
           </div>
         </div>

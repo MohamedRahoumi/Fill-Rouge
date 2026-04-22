@@ -34,8 +34,8 @@ const handleAddGrp = async () => {
 <template>
   <AppLayout :pageTitle="activeSection === 'categories' ? 'Gestion des Catégories' : 'Gestion des Groupes'">
     <div class="space-y-8">
-      <div class="flex items-center justify-between">
-        <div class="flex bg-white p-1 rounded-2xl border border-slate-200 shadow-sm">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="flex flex-wrap bg-white p-1 rounded-2xl border border-slate-200 shadow-sm w-fit">
           <button @click="activeSection = 'categories'" :class="activeSection === 'categories' ? 'bg-brand-500 text-white' : 'text-slate-500'" class="px-6 py-2 rounded-xl text-sm font-bold transition-all">Catégories</button>
           <button @click="activeSection = 'groupes'" :class="activeSection === 'groupes' ? 'bg-brand-500 text-white' : 'text-slate-500'" class="px-6 py-2 rounded-xl text-sm font-bold transition-all">Groupes</button>
         </div>

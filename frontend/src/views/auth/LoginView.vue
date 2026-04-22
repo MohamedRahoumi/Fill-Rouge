@@ -43,10 +43,10 @@ const handleLogin = async () => {
         </svg>
     </div>
 
-    <div class="relative z-10 w-full max-w-[880px] flex flex-wrap bg-white rounded-[48px] shadow-2xl overflow-hidden animate-fade-in shadow-black/10">
+    <div class="relative z-10 w-full max-w-[880px] flex flex-wrap bg-white rounded-[32px] sm:rounded-[48px] shadow-2xl overflow-hidden animate-fade-in shadow-black/10">
         
         <!-- Left Side - Branding -->
-        <div class="flex-1 min-w-[280px] bg-gradient-to-br from-brand-500 to-brand-600 p-10 flex flex-col justify-between text-white">
+        <div class="flex-1 min-w-[240px] bg-gradient-to-br from-brand-500 to-brand-600 p-6 sm:p-10 flex flex-col justify-between text-white">
             <div>
                 <div class="inline-flex items-center justify-center w-14 h-14 bg-white/20 rounded-2xl mb-8">
                     <i class="fas fa-futbol text-3xl"></i>
@@ -87,7 +87,7 @@ const handleLogin = async () => {
         </div>
 
         <!-- Right Side - Form -->
-        <div class="flex-1 min-w-[300px] p-12 bg-white">
+        <div class="flex-1 min-w-[260px] p-6 sm:p-12 bg-white">
             <div class="mb-10">
                 <h3 class="text-2xl font-bold text-slate-900 mb-2">Connexion</h3>
                 <p class="text-sm text-slate-500">Entrez vos identifiants pour continuer</p>

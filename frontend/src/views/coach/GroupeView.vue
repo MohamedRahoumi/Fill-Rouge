@@ -65,7 +65,7 @@ const handleAssignJoueur = async () => {
         
         <!-- Header & Quick Stats -->
         <div class="bg-white p-8 rounded-[40px] border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div class="flex items-center gap-6">
+            <div class="flex items-center gap-4 sm:gap-6">
                 <div class="w-16 h-16 rounded-3xl bg-brand-50 text-brand-600 flex items-center justify-center shadow-inner">
                     <i class="fas fa-users text-2xl"></i>
                 </div>
@@ -74,7 +74,7 @@ const handleAssignJoueur = async () => {
                     <p class="text-sm text-slate-500 font-semibold uppercase tracking-wider">Catégorie : <span class="text-brand-600">{{ coachStore.currentGroupe.groupe.categorie?.nom }}</span></p>
                 </div>
             </div>
-            <div class="flex gap-4">
+            <div class="flex flex-wrap gap-3 sm:gap-4">
                 <div class="px-6 py-3 bg-slate-50 rounded-2xl border border-slate-100">
                     <span class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest">Joueurs</span>
                     <span class="text-xl font-black text-slate-900">{{ coachStore.currentGroupe.groupe.joueurs.length }}</span>
@@ -188,9 +188,9 @@ const handleAssignJoueur = async () => {
         <BaseModal :show="showSeanceModal" @close="showSeanceModal = false" title="Planifier une nouvelle séance">
             <form @submit.prevent="handleAddSeance" class="space-y-6 p-2">
                 <BaseInput v-model="seanceForm.titre" label="Titre de la séance" placeholder="Ex: Entraînement technique, Match amical..." required />
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <BaseInput v-model="seanceForm.date_seance" type="date" label="Date" required />
-                    <div class="grid grid-cols-2 gap-2">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         <BaseInput v-model="seanceForm.heure_debut" type="time" label="Début" required />
                         <BaseInput v-model="seanceForm.heure_fin" type="time" label="Fin" required />
                     </div>

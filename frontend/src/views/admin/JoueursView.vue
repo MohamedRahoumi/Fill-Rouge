@@ -69,7 +69,7 @@ const handleAdd = async () => {
     <!-- Add Modal -->
     <BaseModal :show="showModal" @close="showModal = false" title="Inscrire un Joueur">
         <form @submit.prevent="handleAdd" class="space-y-4">
-            <div class="grid grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <BaseInput v-model="form.prenom" label="Prénom" required />
                 <BaseInput v-model="form.nom" label="Nom" required />
             </div>

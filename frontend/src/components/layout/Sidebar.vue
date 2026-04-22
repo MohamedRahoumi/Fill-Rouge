@@ -2,6 +2,19 @@
 import { useAuthStore } from '../../stores/auth';
 import { useRouter, useRoute } from 'vue-router';
 
+defineProps({
+  collapsed: {
+    type: Boolean,
+    default: false
+  },
+  mobileOpen: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const emit = defineEmits(['close-mobile']);
+
 const authStore = useAuthStore();
 const router = useRouter();
 const route = useRoute();
@@ -13,11 +26,18 @@ const isActive = (path) => {
 const handleLogout = async () => {
   await authStore.logout();
 };
+
+const handleNavClick = () => {
+  if (window.innerWidth < 1024) {
+    emit('close-mobile');
+  }
+};
 </script>
 
 <template>
   <aside 
-    class="sidebar fixed left-0 top-0 bottom-0 w-[260px] bg-white border-r border-slate-200 shadow-sm z-[100] flex flex-col" 
+    class="sidebar fixed left-0 top-0 bottom-0 w-[260px] bg-white border-r border-slate-200 shadow-sm z-[100] flex flex-col transform transition-transform duration-300 lg:translate-x-0" 
+    :class="[mobileOpen ? 'translate-x-0' : '-translate-x-full', collapsed ? 'sidebar-collapsed' : '']"
     id="sidebar"
   >
     <div class="sidebar-logo p-6 border-b border-slate-100 flex items-center gap-3">
@@ -30,7 +50,7 @@ const handleLogout = async () => {
       </div>
     </div>
 
-    <nav class="sidebar-nav flex-1 py-4 px-3 overflow-y-auto">
+    <nav class="sidebar-nav flex-1 py-4 px-3 overflow-y-auto" @click="handleNavClick">
       <!-- Admin Section -->
       <template v-if="authStore.user?.role === 'superadmin'">
         <div class="nav-section-title text-[10px] font-bold text-slate-400 uppercase tracking-[1px] px-2 py-2">Administration</div>
@@ -114,5 +134,44 @@ const handleLogout = async () => {
 @reference "../../style.css";
 .nav-link.router-link-active {
   @apply bg-emerald-50 text-brand-600 font-semibold border border-emerald-100;
+}
+
+@media (min-width: 1024px) {
+  .sidebar.sidebar-collapsed {
+    width: 80px;
+  }
+
+  .sidebar.sidebar-collapsed .sidebar-logo {
+    justify-content: center;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .sidebar.sidebar-collapsed .title,
+  .sidebar.sidebar-collapsed .subtitle,
+  .sidebar.sidebar-collapsed .nav-section-title,
+  .sidebar.sidebar-collapsed .nav-link span,
+  .sidebar.sidebar-collapsed .user-name,
+  .sidebar.sidebar-collapsed .user-role,
+  .sidebar.sidebar-collapsed .logout-label {
+    display: none;
+  }
+
+  .sidebar.sidebar-collapsed .nav-link {
+    justify-content: center;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .sidebar.sidebar-collapsed .user-card {
+    justify-content: center;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .sidebar.sidebar-collapsed .logout-btn {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
 }
 </style>

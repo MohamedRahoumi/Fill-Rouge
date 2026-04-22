@@ -65,7 +65,7 @@ const formatCurrency = (amount) => {
     <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 animate-fade-in">
         
         <!-- Payment Form -->
-        <div class="bg-white p-10 rounded-[48px] border border-slate-200 shadow-sm space-y-8">
+        <div class="bg-white p-6 sm:p-10 rounded-[32px] sm:rounded-[48px] border border-slate-200 shadow-sm space-y-8">
             <div>
                 <h3 class="text-2xl font-black text-slate-800">Finaliser le règlement</h3>
                 <p class="text-sm text-slate-500 mt-1">Sécurisé par Stripe & MiniFoot Academy</p>
@@ -84,7 +84,7 @@ const formatCurrency = (amount) => {
             </div>
 
             <form @submit.prevent="handlePayment" class="space-y-6">
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <BaseInput v-model="montant" label="Montant (MAD)" type="number" required />
                     <BaseInput v-model="mois" label="Mois concerné" type="month" required />
                 </div>
@@ -103,7 +103,7 @@ const formatCurrency = (amount) => {
                     <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/60 space-y-4">
                         <p class="text-xs font-bold uppercase tracking-wider text-slate-500">Carte bancaire fake</p>
                         <BaseInput v-model="cardNumber" label="Numéro de carte" placeholder="4242 4242 4242 4242" required />
-                        <div class="grid grid-cols-3 gap-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                             <BaseInput v-model="expMonth" label="Mois" type="number" placeholder="12" required />
                             <BaseInput v-model="expYear" label="Année" type="number" placeholder="2027" required />
                             <BaseInput v-model="cvv" label="CVV" type="password" placeholder="123" required />
@@ -124,7 +124,7 @@ const formatCurrency = (amount) => {
 
         <!-- History / Context -->
         <div class="space-y-6">
-            <div class="bg-white p-8 rounded-[40px] border border-slate-200 shadow-sm">
+            <div class="bg-white p-6 sm:p-8 rounded-[32px] sm:rounded-[40px] border border-slate-200 shadow-sm">
                 <h4 class="text-lg font-bold text-slate-800 mb-4">Informations importantes</h4>
                 <ul class="space-y-4">
                     <li class="flex gap-3 text-sm text-slate-600">
@@ -142,7 +142,7 @@ const formatCurrency = (amount) => {
                 </ul>
             </div>
 
-            <div class="bg-slate-900 rounded-[40px] p-8 text-white relative overflow-hidden shadow-xl shadow-slate-900/20">
+            <div class="bg-slate-900 rounded-[32px] sm:rounded-[40px] p-6 sm:p-8 text-white relative overflow-hidden shadow-xl shadow-slate-900/20">
                 <div class="relative z-10">
                     <h4 class="text-lg font-bold mb-2">Besoin d'aide ?</h4>
                     <p class="text-slate-400 text-sm">Contactez notre support administratif pour toute question concernant vos règlements.</p>

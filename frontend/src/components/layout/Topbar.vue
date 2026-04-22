@@ -4,6 +4,7 @@ import { useAuthStore } from '../../stores/auth';
 import api from '../../services/api';
 
 const authStore = useAuthStore();
+const emit = defineEmits(['toggle-sidebar']);
 
 const props = defineProps({
   pageTitle: {
@@ -22,6 +23,10 @@ const toggleNotif = () => {
   if (isNotifOpen.value) {
     fetchNotifications();
   }
+};
+
+const handleSidebarToggle = () => {
+  emit('toggle-sidebar');
 };
 
 const closeNotif = () => {
@@ -97,15 +102,15 @@ const today = new Date().toLocaleDateString('fr-FR');
 </script>
 
 <template>
-  <header class="topbar sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200 px-6 py-4 flex items-center justify-between shadow-sm">
+  <header class="topbar sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200 px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between shadow-sm gap-3">
     <div class="flex items-center gap-4">
-      <button id="sidebarToggle" class="w-8 h-8 rounded-lg hover:bg-slate-100 transition-colors flex items-center justify-center text-slate-500">
+      <button id="sidebarToggle" @click="handleSidebarToggle" class="w-8 h-8 rounded-lg hover:bg-slate-100 transition-colors flex items-center justify-center text-slate-500">
         <i class="fas fa-bars text-sm"></i>
       </button>
-      <h1 class="text-lg font-extrabold text-slate-900 tracking-tight">{{ pageTitle }}</h1>
+      <h1 class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight truncate max-w-[42vw] sm:max-w-none">{{ pageTitle }}</h1>
     </div>
     
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-2 sm:gap-4">
       <div class="relative">
         <button 
           id="notifToggle" 
@@ -149,8 +154,8 @@ const today = new Date().toLocaleDateString('fr-FR');
         </div>
       </div>
       
-      <div class="w-px h-6 bg-slate-200"></div>
-      <div class="flex items-center gap-2 text-sm text-slate-500">
+      <div class="hidden sm:block w-px h-6 bg-slate-200"></div>
+      <div class="hidden sm:flex items-center gap-2 text-sm text-slate-500">
         <i class="far fa-calendar-alt text-xs"></i>
         <span class="font-medium">{{ today }}</span>
       </div>

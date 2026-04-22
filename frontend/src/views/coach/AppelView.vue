@@ -65,8 +65,8 @@ const submitEval = async () => {
     <div v-else class="max-w-5xl mx-auto space-y-8 animate-fade-in">
         
         <!-- Session Header -->
-        <div class="bg-white p-8 rounded-[40px] border border-slate-200 shadow-sm flex items-center justify-between">
-            <div class="flex items-center gap-6">
+        <div class="bg-white p-6 sm:p-8 rounded-[32px] sm:rounded-[40px] border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="flex items-center gap-4 sm:gap-6">
                 <div class="w-16 h-16 rounded-3xl bg-slate-100 flex flex-col items-center justify-center text-slate-800">
                     <span class="text-[10px] font-bold uppercase">{{ new Date(coachStore.currentSeance.seance.date_seance).toLocaleDateString('fr-FR', { month: 'short' }) }}</span>
                     <span class="text-2xl font-black">{{ new Date(coachStore.currentSeance.seance.date_seance).getDate() }}</span>
@@ -76,7 +76,7 @@ const submitEval = async () => {
                     <p class="text-sm text-slate-500 font-medium">Groupe : <span class="text-brand-600">{{ coachStore.currentSeance.seance.groupe?.nom }}</span></p>
                 </div>
             </div>
-            <div class="flex gap-3">
+            <div class="flex flex-wrap gap-3 w-full md:w-auto">
                 <BaseButton variant="ghost" @click="router.back()">Annuler</BaseButton>
                 <BaseButton @click="submitAppel" :loading="saving">Enregistrer l'appel</BaseButton>
             </div>
