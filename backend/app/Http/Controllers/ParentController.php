@@ -10,21 +10,32 @@ use Stripe\Stripe;
 
 class ParentController extends Controller
 {
-    // === DASHBOARD ===
+    // dashboard
     public function index()
     {
         $parent = auth()->user();
 
         $joueurs = $parent->joueurs()
-            ->with('categorie', 'groupe.seances', 'evaluations')
+            ->select(['id', 'parent_id', 'categorie_id', 'groupe_id', 'prenom', 'nom'])
+            ->with([
+                'categorie:id,nom',
+                'groupe:id,nom',
+            ])
+            ->withCount('evaluations')
             ->get();
 
-        $paiements = $parent->paiements()->latest()->take(5)->get();
+        $paiements = $parent->paiements()
+            ->select(['id', 'parent_id', 'montant', 'mois_concerne', 'statut', 'created_at'])
+            ->latest()
+            ->take(5)
+            ->get();
 
         $notifications = $parent->notificationsRecues()
+            ->select(['id', 'user_id', 'sender_id', 'titre', 'message', 'est_lu', 'created_at'])
             ->where('est_lu', false)
-            ->with('expediteur')
+            ->with('expediteur:id,prenom,nom')
             ->latest()
+            ->take(10)
             ->get();
 
         return response()->json([
@@ -34,11 +45,16 @@ class ParentController extends Controller
             'notifications' => $notifications
         ]);
     }
+    // $js=Joueur::where("date_naissance","<","01/01/2011")->get();
+    // foreach($js as $j){
+    // $j=toUpper($j->nom." ".$j->prenom);
+    // }
 
-    // === JOUEURS ===
+    //joueur
     public function showJoueur(Joueur $joueur)
     {
         abort_unless($joueur->parent_id === auth()->id(), 403);
+
 
         $joueur->load(
             'categorie',
@@ -57,7 +73,7 @@ class ParentController extends Controller
         ]);
     }
 
-    // === PAIEMENTS ===
+    // paiement
     public function createStripeIntent(Request $request)
     {
         $request->validate([

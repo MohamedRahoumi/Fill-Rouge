@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class CoachController extends Controller
 {
-    // === DASHBOARD ===
+    // dashborad
     public function index()
     {
         $coach   = auth()->user();
@@ -31,7 +31,7 @@ class CoachController extends Controller
         ]);
     }
 
-    // === GROUPES ===
+    // groupes
     public function showGroupe(Groupe $groupe)
     {
         $this->authorizeGroupe($groupe);
@@ -65,7 +65,7 @@ class CoachController extends Controller
         ]);
     }
 
-    // === SÉANCES ===
+    // seances
     public function storeSeance(Request $request, Groupe $groupe)
     {
         $this->authorizeGroupe($groupe);
@@ -92,7 +92,7 @@ class CoachController extends Controller
         ], 201);
     }
 
-    // === APPEL / PRÉSENCES ===
+    // presence
     public function appel(Seance $seance)
     {
         $this->authorizeSeance($seance);
@@ -141,7 +141,7 @@ class CoachController extends Controller
         ]);
     }
 
-    // === ÉVALUATIONS ===
+    // evaluation
     public function storeEvaluation(Request $request, Joueur $joueur)
     {
         $coach = auth()->user();
@@ -196,7 +196,7 @@ class CoachController extends Controller
         ]);
     }
 
-    // === HELPERS ===
+    //help
     private function authorizeGroupe(Groupe $groupe): void
     {
         abort_unless($groupe->coach_id === auth()->id(), 403, 'Ce groupe ne vous est pas assigné.');

@@ -72,6 +72,14 @@ export const useAdminStore = defineStore('admin', {
       await api.post('/admin/joueurs', data);
       await this.fetchDashboard();
     },
+    async updateJoueur(id, data) {
+      await api.put(`/admin/joueurs/${id}`, data);
+      await this.fetchDashboard();
+    },
+    async deleteJoueur(id) {
+      await api.delete(`/admin/joueurs/${id}`);
+      await this.fetchDashboard();
+    },
 
     // Paiements
     async fetchPaiements() {
@@ -88,8 +96,24 @@ export const useAdminStore = defineStore('admin', {
         await api.post('/admin/categories', data);
         await this.fetchDashboard();
     },
+    async updateCategorie(id, data) {
+        await api.put(`/admin/categories/${id}`, data);
+        await this.fetchDashboard();
+    },
+    async deleteCategorie(id) {
+        await api.delete(`/admin/categories/${id}`);
+        await this.fetchDashboard();
+    },
     async addGroupe(data) {
         await api.post('/admin/groupes', data);
+        await this.fetchDashboard();
+    },
+    async updateGroupe(id, data) {
+        await api.put(`/admin/groupes/${id}`, data);
+        await this.fetchDashboard();
+    },
+    async deleteGroupe(id) {
+        await api.delete(`/admin/groupes/${id}`);
         await this.fetchDashboard();
     },
     async sendNotification(data) {

@@ -7,16 +7,11 @@ use App\Http\Controllers\CoachController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\NotificationController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-*/
 
-// Public routes
+
 Route::post('/login', [AuthController::class, 'login']);
 
-// Protected routes
+
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/me', [AuthController::class, 'me']);
@@ -26,13 +21,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/notifications/read-all', [NotificationController::class, 'markAllAsRead']);
     Route::post('/notifications/{notification}/read', [NotificationController::class, 'markAsRead']);
 
-    // Super Admin Routes
+    // Super Admin
     Route::prefix('admin')->middleware('role:superadmin')->group(function () {
         Route::get('/dashboard', [SuperAdminController::class, 'index']);
 
         // Coachs
-        Route::apiResource('coachs', SuperAdminController::class)->except(['index', 'show']); // Adjusting to API resources later
-        // For now, mapping existing methods
+        Route::apiResource('coachs', SuperAdminController::class)->except(['index', 'show']);
+
         Route::post('/coachs', [SuperAdminController::class, 'storeCoach']);
         Route::put('/coachs/{coach}', [SuperAdminController::class, 'updateCoach']);
         Route::delete('/coachs/{coach}', [SuperAdminController::class, 'destroyCoach']);
@@ -68,7 +63,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/notifications', [SuperAdminController::class, 'storeNotification']);
     });
 
-    // Coach Routes
+    // Coach
     Route::prefix('coach')->middleware('role:coach')->group(function () {
         Route::get('/dashboard', [CoachController::class, 'index']);
         Route::get('/groupes/{groupe}', [CoachController::class, 'showGroupe']);
@@ -80,7 +75,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/seances/{seance}/joueurs/{joueur}/evaluation', [CoachController::class, 'storeEvaluationForSeance']);
     });
 
-    // Parent Routes
+
     Route::prefix('parent')->middleware('role:parent')->group(function () {
         Route::get('/dashboard', [ParentController::class, 'index']);
         Route::get('/joueurs/{joueur}', [ParentController::class, 'showJoueur']);

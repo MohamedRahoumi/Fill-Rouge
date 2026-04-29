@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 
 class SuperAdminController extends Controller
 {
-    // === DASHBOARD ===
+    // dashborad
     public function index()
     {
         $stats = [
@@ -24,7 +24,7 @@ class SuperAdminController extends Controller
             'categories'=> Categorie::count(),
             'paiements' => Paiement::where('statut', 'paid')->sum('montant'),
         ];
-        
+
         $recentPaiements = Paiement::with('parent')->latest()->take(5)->get();
         $notifications   = NotificationAcademie::with('destinataire')->latest()->take(5)->get();
 
@@ -66,7 +66,7 @@ class SuperAdminController extends Controller
         ]);
     }
 
-    // === COACHS ===
+    // coach
     public function storeCoach(Request $request)
     {
         $data = $request->validate([
@@ -98,9 +98,9 @@ class SuperAdminController extends Controller
             'prenom' => 'required|string|max:100',
             'email'  => 'required|email|unique:users,email,' . $coach->id,
         ]);
-        
+
         $coach->update($data);
-        
+
         return response()->json([
             'message' => 'Coach mis à jour.',
             'coach'   => $coach
@@ -111,13 +111,13 @@ class SuperAdminController extends Controller
     {
         abort_if($coach->role !== 'coach', 404);
         $coach->delete();
-        
+
         return response()->json([
             'message' => 'Coach supprimé.'
         ]);
     }
 
-    // === PARENTS ===
+    // parents
     public function storeParent(Request $request)
     {
         $data = $request->validate([
@@ -149,9 +149,9 @@ class SuperAdminController extends Controller
             'prenom' => 'required|string|max:100',
             'email'  => 'required|email|unique:users,email,' . $parent->id,
         ]);
-        
+
         $parent->update($data);
-        
+
         return response()->json([
             'message' => 'Parent mis à jour.',
             'parent'  => $parent
@@ -162,22 +162,22 @@ class SuperAdminController extends Controller
     {
         abort_if($parent->role !== 'parent', 404);
         $parent->delete();
-        
+
         return response()->json([
             'message' => 'Parent supprimé.'
         ]);
     }
 
-    // === CATÉGORIES ===
+    // categorie
     public function storeCategorie(Request $request)
     {
         $data = $request->validate([
             'nom'         => 'required|string|max:50',
             'description' => 'nullable|string',
         ]);
-        
+
         $categorie = Categorie::create($data);
-        
+
         return response()->json([
             'message'   => 'Catégorie créée.',
             'categorie' => $categorie
@@ -190,9 +190,9 @@ class SuperAdminController extends Controller
             'nom'         => 'required|string|max:50',
             'description' => 'nullable|string',
         ]);
-        
+
         $categorie->update($data);
-        
+
         return response()->json([
             'message'   => 'Catégorie mise à jour.',
             'categorie' => $categorie
@@ -202,13 +202,13 @@ class SuperAdminController extends Controller
     public function destroyCategorie(Categorie $categorie)
     {
         $categorie->delete();
-        
+
         return response()->json([
             'message' => 'Catégorie supprimée.'
         ]);
     }
 
-    // === GROUPES ===
+    // groupe
     public function storeGroupe(Request $request)
     {
         $data = $request->validate([
@@ -216,9 +216,9 @@ class SuperAdminController extends Controller
             'categorie_id' => 'required|exists:categories,id',
             'coach_id'     => 'nullable|exists:users,id',
         ]);
-        
+
         $groupe = Groupe::create($data);
-        
+
         return response()->json([
             'message' => 'Groupe créé.',
             'groupe'  => $groupe
@@ -232,9 +232,9 @@ class SuperAdminController extends Controller
             'categorie_id' => 'required|exists:categories,id',
             'coach_id'     => 'nullable|exists:users,id',
         ]);
-        
+
         $groupe->update($data);
-        
+
         return response()->json([
             'message' => 'Groupe mis à jour.',
             'groupe'  => $groupe
@@ -244,7 +244,7 @@ class SuperAdminController extends Controller
     public function destroyGroupe(Groupe $groupe)
     {
         $groupe->delete();
-        
+
         return response()->json([
             'message' => 'Groupe supprimé.'
         ]);
@@ -253,19 +253,19 @@ class SuperAdminController extends Controller
     public function assignCoachToGroupe(Request $request, Groupe $groupe)
     {
         $request->validate(['coach_id' => 'required|exists:users,id']);
-        
+
         $groupe->update(['coach_id' => $request->coach_id]);
-        
+
         return response()->json([
             'message' => 'Coach assigné au groupe.'
         ]);
     }
 
-    // === JOUEURS ===
+    // joueur
     public function joueurs()
     {
         $joueurs = Joueur::with(['parent', 'categorie', 'groupe'])->latest()->paginate(20);
-        
+
         return response()->json($joueurs);
     }
 
@@ -278,9 +278,9 @@ class SuperAdminController extends Controller
             'parent_id'       => 'required|exists:users,id',
             'categorie_id'    => 'nullable|exists:categories,id',
         ]);
-        
+
         $joueur = Joueur::create($data);
-        
+
         return response()->json([
             'message' => 'Joueur créé.',
             'joueur'  => $joueur
@@ -296,9 +296,9 @@ class SuperAdminController extends Controller
             'parent_id'      => 'required|exists:users,id',
             'categorie_id'   => 'nullable|exists:categories,id',
         ]);
-        
+
         $joueur->update($data);
-        
+
         return response()->json([
             'message' => 'Joueur mis à jour.',
             'joueur'  => $joueur
@@ -308,7 +308,7 @@ class SuperAdminController extends Controller
     public function destroyJoueur(Joueur $joueur)
     {
         $joueur->delete();
-        
+
         return response()->json([
             'message' => 'Joueur supprimé.'
         ]);
@@ -317,19 +317,19 @@ class SuperAdminController extends Controller
     public function assignJoueurToCategorie(Request $request, Joueur $joueur)
     {
         $request->validate(['categorie_id' => 'required|exists:categories,id']);
-        
+
         $joueur->update(['categorie_id' => $request->categorie_id, 'groupe_id' => null]);
-        
+
         return response()->json([
             'message' => 'Joueur affecté à la catégorie.'
         ]);
     }
 
-    // === PAIEMENTS ===
+    // paiement
     public function paiements()
     {
         $paiements = Paiement::with('parent')->latest()->paginate(20);
-        
+
         return response()->json($paiements);
     }
 
@@ -365,7 +365,7 @@ class SuperAdminController extends Controller
         }
     }
 
-    // === NOTIFICATIONS ===
+    //
     public function storeNotification(Request $request)
     {
         $request->validate([

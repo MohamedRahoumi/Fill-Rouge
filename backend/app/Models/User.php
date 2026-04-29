@@ -19,13 +19,13 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    // === SUPER ADMIN ===
+    // admin
     public function notificationsEnvoyees()
     {
         return $this->hasMany(NotificationAcademie::class, 'sender_id');
     }
 
-    // === COACH ===
+    // coach
     public function groupesGeres()
     {
         return $this->hasMany(Groupe::class, 'coach_id');
@@ -41,7 +41,7 @@ class User extends Authenticatable
         return $this->hasMany(Seance::class, 'coach_id');
     }
 
-    // === PARENT ===
+    // parent
     public function joueurs()
     {
         return $this->hasMany(Joueur::class, 'parent_id');
@@ -52,7 +52,7 @@ class User extends Authenticatable
         return $this->hasMany(Paiement::class, 'parent_id');
     }
 
-    // === TOUS ===
+    // tout
     public function notificationsRecues()
     {
         return $this->hasMany(NotificationAcademie::class, 'user_id');

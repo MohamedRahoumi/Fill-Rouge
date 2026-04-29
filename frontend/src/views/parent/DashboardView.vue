@@ -49,7 +49,7 @@ const formatCurrency = (amount) => {
                         </div>
                         <div class="flex justify-between items-center text-sm">
                             <span class="text-slate-400">Évaluations</span>
-                            <span class="text-slate-900 font-bold">{{ joueur.evaluations?.length || 0 }}</span>
+                            <span class="text-slate-900 font-bold">{{ joueur.evaluations_count ?? joueur.evaluations?.length ?? 0 }}</span>
                         </div>
                     </div>
 

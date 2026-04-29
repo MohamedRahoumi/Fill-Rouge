@@ -110,10 +110,7 @@ const formatCurrency = (amount) => {
                         </div>
                     </div>
 
-                    <div class="p-4 border border-brand-100 bg-brand-50/30 rounded-2xl flex items-center gap-4">
-                        <i class="fab fa-stripe text-brand-600 text-3xl"></i>
-                        <p class="text-xs text-brand-700 font-medium">Cartes fake Stripe: 4242 4242 4242 4242 (succès), 4000 0000 0000 0002 (refus), 4000 0000 0000 9995 (fonds insuffisants), 4000 0025 0000 3155 (3D Secure).</p>
-                    </div>
+                    
                 </div>
 
                 <BaseButton type="submit" :loading="loading" class="w-full !py-4 !text-lg">

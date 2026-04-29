@@ -1,14 +1,12 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'http://localhost:8000/api', // Adjust if needed
+    baseURL: 'http://localhost:8000/api', 
     headers: {
-        'Content-Type': 'application/json',
         'Accept': 'application/json',
     },
 });
 
-// Auth interceptor
 api.interceptors.request.use((config) => {
     const token = localStorage.getItem('auth_token');
     if (token) {
@@ -17,14 +15,13 @@ api.interceptors.request.use((config) => {
     return config;
 });
 
-// Response interceptor to handle 401
 api.interceptors.response.use(
     (response) => response,
     (error) => {
         if (error.response && error.response.status === 401) {
             localStorage.removeItem('auth_token');
             localStorage.removeItem('user');
-            // Redirect to login if not already there
+            
             if (!window.location.pathname.includes('/login')) {
                 window.location.href = '/login';
             }

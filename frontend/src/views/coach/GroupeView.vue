@@ -165,23 +165,7 @@ const handleAssignJoueur = async () => {
                 </div>
             </div>
 
-            <!-- Stats & Sidebar -->
-            <div class="space-y-6">
-                <div class="bg-gradient-to-br from-slate-900 to-slate-800 p-8 rounded-[40px] text-white shadow-xl">
-                    <h4 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">Résumé pédagogique</h4>
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between p-4 bg-white/5 rounded-2xl border border-white/10">
-                            <span class="text-sm font-medium text-slate-300">Taux de présence</span>
-                            <span class="text-lg font-black text-brand-400">85%</span>
-                        </div>
-                        <div class="flex items-center justify-between p-4 bg-white/5 rounded-2xl border border-white/10">
-                            <span class="text-sm font-medium text-slate-300">Moyenne technique</span>
-                            <span class="text-lg font-black text-gold-400">7.2/10</span>
-                        </div>
-                    </div>
-                    <p class="text-[11px] text-slate-500 mt-6 leading-relaxed italic">Ces statistiques sont calculées sur la base des évaluations des 5 dernières séances.</p>
-                </div>
-            </div>
+           
         </div>
 
         <!-- Seance Modal -->
