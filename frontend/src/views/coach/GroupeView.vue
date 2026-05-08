@@ -109,9 +109,7 @@ const handleAssignJoueur = async () => {
                                 <tr v-for="player in coachStore.currentGroupe.groupe.joueurs" :key="player.id" class="hover:bg-slate-50/50 transition-colors">
                                     <td class="px-8 py-5">
                                         <div class="flex items-center gap-3">
-                                            <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center font-bold text-slate-600">
-                                                {{ player.prenom.charAt(0) }}{{ player.nom.charAt(0) }}
-                                            </div>
+                                            <img :src="player.photo_url" class="w-10 h-10 rounded-full object-cover border-2 border-slate-100" :alt="player.prenom">
                                             <span class="text-sm font-bold text-slate-900">{{ player.prenom }} {{ player.nom }}</span>
                                         </div>
                                     </td>

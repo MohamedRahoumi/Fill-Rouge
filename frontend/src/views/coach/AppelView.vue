@@ -98,9 +98,7 @@ const submitEval = async () => {
                         <tr v-for="joueur in coachStore.currentSeance.joueurs" :key="joueur.id" class="hover:bg-slate-50/50 transition-colors">
                             <td class="px-8 py-5">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold">
-                                        {{ joueur.prenom.charAt(0) }}{{ joueur.nom.charAt(0) }}
-                                    </div>
+                                    <img :src="joueur.photo_url" class="w-10 h-10 rounded-full object-cover border-2 border-slate-100" :alt="joueur.prenom">
                                     <span class="text-sm font-bold text-slate-900">{{ joueur.prenom }} {{ joueur.nom }}</span>
                                 </div>
                             </td>

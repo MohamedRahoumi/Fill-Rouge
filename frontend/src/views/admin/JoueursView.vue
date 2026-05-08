@@ -10,7 +10,7 @@ const adminStore = useAdminStore();
 const showModal = ref(false);
 const isEditing = ref(false);
 const loading = ref(false);
-const form = ref({ id: null, nom: '', prenom: '', date_naissance: '', parent_id: '', categorie_id: '' });
+const form = ref({ id: null, nom: '', prenom: '', date_naissance: '', parent_id: '', categorie_id: '', photo: '' });
 
 onMounted(async () => {
     await adminStore.fetchDashboard();
@@ -18,7 +18,7 @@ onMounted(async () => {
 
 const openCreateModal = () => {
     isEditing.value = false;
-    form.value = { id: null, nom: '', prenom: '', date_naissance: '', parent_id: '', categorie_id: '' };
+    form.value = { id: null, nom: '', prenom: '', date_naissance: '', parent_id: '', categorie_id: '', photo: '' };
     showModal.value = true;
 };
 
@@ -30,7 +30,8 @@ const openEditModal = (joueur) => {
         prenom: joueur.prenom, 
         date_naissance: joueur.date_naissance, 
         parent_id: joueur.parent_id, 
-        categorie_id: joueur.categorie_id 
+        categorie_id: joueur.categorie_id,
+        photo: joueur.photo
     };
     showModal.value = true;
 };
@@ -84,9 +85,7 @@ const handleDelete = async (id) => {
               <tr v-for="joueur in adminStore.joueurs" :key="joueur.id" class="hover:bg-slate-50 transition-colors">
                 <td class="px-8 py-5">
                   <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center font-bold">
-                      {{ joueur.prenom.charAt(0) }}
-                    </div>
+                    <img :src="joueur.photo_url" class="w-10 h-10 rounded-full object-cover border-2 border-brand-50" :alt="joueur.prenom">
                     <div>
                       <div class="text-sm font-bold text-slate-900">{{ joueur.prenom }} {{ joueur.nom }}</div>
                       <div class="text-[10px] text-slate-400 italic">Né le {{ new Date(joueur.date_naissance).toLocaleDateString() }}</div>
@@ -132,6 +131,7 @@ const handleDelete = async (id) => {
                 <BaseInput v-model="form.nom" label="Nom" placeholder="Nom" required />
             </div>
             <BaseInput v-model="form.date_naissance" label="Date de naissance" type="date" required />
+            <BaseInput v-model="form.photo" label="Photo (URL)" placeholder="https://..." />
             
             <div class="space-y-1.5">
                 <label class="block text-sm font-semibold text-slate-700">Responsable (Parent)</label>

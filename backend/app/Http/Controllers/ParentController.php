@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Joueur;
 use App\Models\Paiement;
+use App\Models\NotificationAcademie;
 use Illuminate\Http\Request;
 use Stripe\PaymentIntent;
 use Stripe\Stripe;
 
 class ParentController extends Controller
 {
+    // ... (index and showJoueur omitted for brevity, but I must keep them if I'm replacing the whole block or use multi_replace)
+
     // dashboard
     public function index()
     {
@@ -93,7 +96,7 @@ class ParentController extends Controller
 
             $intent = PaymentIntent::create([
                 'amount' => (int) round(((float) $request->montant) * 100),
-                'currency' => 'eur',
+                'currency' => 'mad',
                 'payment_method_types' => ['card'],
                 'metadata' => [
                     'parent_id' => (string) $parent->id,
@@ -158,6 +161,16 @@ class ParentController extends Controller
                     'parent_id' => $parent->id,
                 ]
             );
+
+            if ($statut === 'paid') {
+                NotificationAcademie::create([
+                    'titre' => 'Paiement effectué',
+                    'message' => 'Votre paiement de ' . $request->montant . ' MAD pour le mois ' . $request->mois_concerne . ' a été reçu avec succès.',
+                    'user_id' => $parent->id,
+                    'sender_id' => null, // Système
+                    'est_lu' => false,
+                ]);
+            }
 
             return response()->json([
                 'message' => $statut === 'paid'
@@ -254,6 +267,16 @@ class ParentController extends Controller
                 'stripe_transaction_id' => $intent->id,
                 'parent_id'             => $parent->id,
             ]);
+
+            if ($statut === 'paid') {
+                NotificationAcademie::create([
+                    'titre' => 'Paiement effectué',
+                    'message' => 'Votre paiement de ' . $request->montant . ' MAD pour le mois ' . $request->mois_concerne . ' a été reçu avec succès.',
+                    'user_id' => $parent->id,
+                    'sender_id' => null, // Système
+                    'est_lu' => false,
+                ]);
+            }
 
             return response()->json([
                 'message'  => $statut === 'paid'

@@ -12,6 +12,19 @@ class Joueur extends Model
         'date_naissance' => 'date',
     ];
 
+    protected $appends = ['full_name', 'age', 'photo_url'];
+
+    public function getPhotoUrlAttribute()
+    {
+        if ($this->photo) {
+            if (str_starts_with($this->photo, 'http')) {
+                return $this->photo;
+            }
+            return asset('storage/' . $this->photo);
+        }
+        return 'https://ui-avatars.com/api/?name=' . urlencode($this->prenom . ' ' . $this->nom) . '&color=7F9CF5&background=EBF4FF';
+    }
+
     public function parent()
     {
         return $this->belongsTo(User::class, 'parent_id');

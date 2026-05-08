@@ -103,6 +103,7 @@ class DatabaseSeeder extends Seeder
                     'date_naissance' => $faker->date('Y-m-d', '-7 years'),
                     'parent_id' => $parent->id,
                     'categorie_id' => $categories[array_rand($categories)]->id,
+                    'photo' => 'https://randomuser.me/api/portraits/men/' . rand(1, 99) . '.jpg',
                 ]);
                 
                 // Assign player to a random group of their category

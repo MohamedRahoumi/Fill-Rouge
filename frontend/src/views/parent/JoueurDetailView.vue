@@ -20,9 +20,7 @@ onMounted(() => {
         
         <!-- Profile Header -->
         <div class="bg-white p-8 rounded-[40px] border border-slate-200 shadow-sm flex flex-col md:flex-row items-center gap-8">
-            <div class="w-32 h-32 rounded-[48px] bg-brand-50 text-brand-600 flex items-center justify-center text-5xl font-black shadow-inner">
-                {{ parentStore.currentJoueur.joueur.prenom.charAt(0) }}
-            </div>
+            <img :src="parentStore.currentJoueur.joueur.photo_url" class="w-32 h-32 rounded-[48px] object-cover border-4 border-brand-50 shadow-sm" :alt="parentStore.currentJoueur.joueur.prenom">
             <div class="text-center md:text-left flex-1">
                 <h2 class="text-3xl font-black text-slate-900">{{ parentStore.currentJoueur.joueur.prenom }} {{ parentStore.currentJoueur.joueur.nom }}</h2>
                 <div class="flex flex-wrap justify-center md:justify-start gap-4 mt-3">

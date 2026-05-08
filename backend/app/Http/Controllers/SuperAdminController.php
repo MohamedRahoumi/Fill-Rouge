@@ -277,6 +277,7 @@ class SuperAdminController extends Controller
             'date_naissance'  => 'required|date',
             'parent_id'       => 'required|exists:users,id',
             'categorie_id'    => 'nullable|exists:categories,id',
+            'photo'           => 'nullable|string',
         ]);
 
         $joueur = Joueur::create($data);
@@ -295,6 +296,7 @@ class SuperAdminController extends Controller
             'date_naissance' => 'required|date',
             'parent_id'      => 'required|exists:users,id',
             'categorie_id'   => 'nullable|exists:categories,id',
+            'photo'          => 'nullable|string',
         ]);
 
         $joueur->update($data);
@@ -348,8 +350,8 @@ class SuperAdminController extends Controller
             $senderId = auth()->id();
 
             NotificationAcademie::create([
-                'titre' => 'Paiement valide',
-                'message' => 'Votre paiement du mois ' . $mois . ' a ete valide avec succes.',
+                'titre' => 'Paiement validé',
+                'message' => 'Votre paiement de ' . $paiement->montant . ' MAD pour le mois ' . $mois . ' a été validé avec succès par l\'administration.',
                 'user_id' => $paiement->parent_id,
                 'sender_id' => $senderId,
                 'est_lu' => false,

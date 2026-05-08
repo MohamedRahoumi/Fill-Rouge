@@ -238,7 +238,10 @@ const toggleGroupePlayers = (groupeId) => {
             </div>
             <ul v-else class="space-y-2 max-h-52 overflow-auto pr-1">
               <li v-for="joueur in joueursByGroupe[grp.id]" :key="joueur.id" class="flex items-center justify-between rounded-xl bg-white px-3 py-2 border border-slate-100">
-                <span class="text-sm font-semibold text-slate-800">{{ joueur.prenom }} {{ joueur.nom }}</span>
+                <div class="flex items-center gap-2">
+                  <img :src="joueur.photo_url" class="w-6 h-6 rounded-full object-cover" :alt="joueur.prenom">
+                  <span class="text-sm font-semibold text-slate-800">{{ joueur.prenom }} {{ joueur.nom }}</span>
+                </div>
                 <span class="text-[11px] font-bold text-slate-500 uppercase">{{ joueur.categorie?.nom || 'Sans cat.' }}</span>
               </li>
             </ul>

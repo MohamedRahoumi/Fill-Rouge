@@ -33,9 +33,7 @@ const formatCurrency = (amount) => {
                     class="bg-white p-8 rounded-[40px] border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all group"
                 >
                     <div class="flex items-center gap-4 mb-6">
-                        <div class="w-16 h-16 rounded-3xl bg-brand-50 text-brand-600 flex items-center justify-center font-black text-2xl group-hover:bg-brand-500 group-hover:text-white transition-all">
-                            {{ joueur.prenom.charAt(0) }}
-                        </div>
+                        <img :src="joueur.photo_url" class="w-16 h-16 rounded-3xl object-cover border-4 border-brand-50 shadow-sm" :alt="joueur.prenom">
                         <div>
                             <h4 class="text-xl font-bold text-slate-900">{{ joueur.prenom }} {{ joueur.nom }}</h4>
                             <span class="px-2.5 py-0.5 bg-slate-100 text-slate-500 rounded-full text-[10px] font-bold uppercase tracking-wider">{{ joueur.categorie?.nom || 'Sans catégorie' }}</span>
